@@ -110,11 +110,13 @@ A short proof-of-concept is supplied in `docker-compose.yml`
 3. Results are located in `results/example*`
 
 Start the scan with
+
 ```sh
- docker compose up -d nginx_2404
- docker compose up fuzzer
- ```
-after the scan remove the idle TLS server with 
+docker compose up -d nginx_2404
+docker compose up fuzzer
+```
+
+after the scan remove the idle TLS server with
 
 ```sh
 docker compose down
@@ -140,3 +142,4 @@ CensorScanner can scan 3 types of servers:
 - Automatic combination of circumvention strategies by specifiable test strength
 - Full TLS handshake / ECHO connections / simplified connection attempts with example server
 - Automatic measurement of and determination of connection attempts (e.g. TCP RST)
+
