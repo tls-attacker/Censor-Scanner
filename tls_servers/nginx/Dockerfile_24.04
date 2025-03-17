@@ -1,0 +1,9 @@
+FROM ubuntu:24.04
+
+# install dependencies
+RUN apt update
+RUN apt install -y openssl
+RUN apt install -y nginx-full
+
+# go to correct folder and prepare execution of nginx command
+CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"] 

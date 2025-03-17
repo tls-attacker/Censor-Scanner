@@ -1,0 +1,224 @@
+version: '3'
+services:
+  fuzzer:
+    build:
+      context: .
+      dockerfile: Dockerfile_fuzzer
+    restart: no
+    # libpcap does not work otherwise
+    network_mode: "host"
+    volumes:
+      - ./results:/results
+    command: -testStrength 1
+      -keyLogFile /tmp/key.log
+      -enableCapturing
+      -outputFileIdentifier results/example
+      -scanType DIRECT
+      -connect 127.0.0.1:443  
+      -serverName target.com
+      -threads 100
+
+  nginx_2404:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_24.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+
+
+  nginx_2310:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_23.10
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+      
+  nginx_2304:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_23.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+      
+  nginx_2204:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_22.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+      
+  nginx_2004:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_20.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+      
+  nginx_1804:
+    build: 
+      context: ./tls_servers/nginx
+      dockerfile: Dockerfile_18.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/nginx/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/nginx/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/nginx/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/nginx/ssl/key_target.com.pem
+      - ./tls_servers/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/nginx/
+
+  apache_2404:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_24.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/
+
+  apache_2310:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_23.10
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/
+
+  apache_2304:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_23.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/
+
+  apache_2204:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_22.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/
+
+  apache_2004:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_20.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/
+
+  apache_1804:
+    build: 
+      context: ./tls_servers/httpd
+      dockerfile: Dockerfile_18.04
+    restart: unless-stopped
+    ports: 
+      - 443:443
+    volumes:
+      - ./tls_servers/certs/otherpage.com.pem:/etc/apache2/ssl/otherpage.com.pem
+      - ./tls_servers/certs/key_otherpage.com.pem:/etc/apache2/ssl/key_otherpage.com.pem
+      - ./tls_servers/certs/target.com.pem:/etc/apache2/ssl/target.com.pem
+      - ./tls_servers/certs/key_target.com.pem:/etc/apache2/ssl/key_target.com.pem
+      - ./tls_servers/httpd/httpd_no_TLS_1.3.conf:/usr/local/apache2/conf/httpd.conf
+      - ./tls_servers/otherpage.com.html:/var/www/otherpage.com/public/index.html
+      - ./tls_servers/target.com.html:/var/www/target.com/public/index.html
+      - ./tls_servers/log/:/var/log/apache2/

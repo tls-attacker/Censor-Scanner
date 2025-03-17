@@ -1,0 +1,12 @@
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# install dependencies
+RUN apt update
+RUN apt install -y openssl
+RUN apt install -y libapr1 libapr1-dev libaprutil1
+RUN apt install -y apache2
+RUN cp /etc/mime.types /etc/apache2/mime.types
+
+CMD ["apache2", "-X", "-f", "/usr/local/apache2/conf/httpd.conf"]

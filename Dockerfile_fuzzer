@@ -1,0 +1,13 @@
+FROM maven:3.8.5-openjdk-11 as build
+
+COPY ./Censor-Core /src/Censor-Core
+COPY ./Censor-Fuzzer /src/Censor-Fuzzer
+COPY ./pom.xml /src/
+WORKDIR /src/
+RUN mvn clean install -DskipTests -Dspotless.apply.skip -Dmaven.javadoc.skip=true
+
+FROM openjdk:11
+RUN apt update && apt install -y libpcap0.8-dev
+COPY --from=build /src/apps /apps/
+ENV DOCKER=1
+ENTRYPOINT ["java", "-jar", "/apps/censor-fuzzer-1.0.0.jar"]

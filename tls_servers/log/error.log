@@ -1,0 +1,4 @@
+2025/03/17 13:28:06 [crit] 13#13: *155 SSL_do_handshake() failed (SSL: error:0A0000CD:SSL routines::invalid alert) while SSL handshaking, client: 172.18.0.1, server: 0.0.0.0:443
+2025/03/17 13:29:00 [crit] 14#14: *207 SSL_do_handshake() failed (SSL: error:0A0000CD:SSL routines::invalid alert) while SSL handshaking, client: 172.18.0.1, server: 0.0.0.0:443
+2025/03/17 13:39:01 [crit] 14#14: *469 SSL_do_handshake() failed (SSL: error:0A0000CD:SSL routines::invalid alert) while SSL handshaking, client: 172.18.0.1, server: 0.0.0.0:443
+2025/03/17 14:00:08 [crit] 13#13: *533 SSL_do_handshake() failed (SSL: error:0A0000CD:SSL routines::invalid alert) while SSL handshaking, client: 172.18.0.1, server: 0.0.0.0:443
