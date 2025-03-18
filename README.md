@@ -12,7 +12,7 @@ To this end, CensorScanner implements various circumvention techniques on the TL
 Censors and TLS-servers can be analyzed in conjunction or separately to determine working strategies.
 Output is provided in .json and .txt formats under /results.
 
-Depends on [TLS-Attacker](https://github.com/tls-attacker/) and Java 21!
+Depends on [TLS-Attacker](https://github.com/tls-attacker/) and Java 11!
 
 ## Usage
 
