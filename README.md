@@ -3,8 +3,6 @@
 Code of CensorScanner as used in the 2025 paper `Transport Layer Obscurity: Circumventing SNI Censorship on the TLS Layer` published in the 46th IEEE Symposium on
 Security and Privacy.
 
-Link to the paper: TODO
-
 ## Description
 
 CensorScanner automatically analyzes censors and TLS-servers for their acceptance of circumvention strategies against SNI-based censorship.
