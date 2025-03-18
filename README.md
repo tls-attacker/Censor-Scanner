@@ -99,7 +99,7 @@ java -jar censor-fuzzer-1.1.0-SNAPSHOT.jar
  -threads 100
 ```
 
-This scans the TLS-Server running at localhost:443 for its acceptance of TLS censorship circumventino techniques. The test strength is set to 1 for a fast execution in this example.
+This scans the TLS-Server running at localhost:443 for its acceptance of TLS censorship circumvention techniques. The test strength is set to 1 for a fast execution in this example.
 
 ## Dockerfiles
 
