@@ -1,6 +1,7 @@
 resources/*.pem
 results_strength_*.txt
 results/*
+*.log
 
 # echo results
 echo_results*

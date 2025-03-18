@@ -18,6 +18,9 @@
         <Logger name="de.rub.nds.tlsattacker" level="WARN" additivity="false">
             <AppenderRef ref="Direct"/>
         </Logger>
+        <Logger name="de.rub.nds.tlsattacker.core.layer.impl.RecordLayer" level="ERROR" additivity="false">
+            <AppenderRef ref="Direct"/>
+        </Logger>
         <Logger name="de.rub.nds.tlsattacker.core.protocol.handler.extension.ServerNameIndicationExtensionHandler"
                 level="ERROR" additivity="false">
             <AppenderRef ref="Direct"/>
