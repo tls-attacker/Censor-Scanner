@@ -7,7 +7,7 @@ import de.rub.nds.tlsattacker.core.constants.ProtocolMessageType
 import org.junit.jupiter.api.Assertions
 import java.lang.Exception
 
-class RecordInjectionManipulationTest: ManipulationTest<RecordInjectionManipulation>(fails = true) { // fails = true necessary because of recordTypeBefore = RecordManipulationType.HANDSHAKE_NULL_BYTE
+class RecordInjectionManipulationTest: ManipulationTest<RecordInjectionManipulation>(fails = true, longWait = true) { // fails = true necessary because of recordTypeBefore = RecordManipulationType.HANDSHAKE_NULL_BYTE
     override fun targetManipulations(): Collection<RecordInjectionManipulation> {
         return listOf(
             RecordInjectionManipulation(),

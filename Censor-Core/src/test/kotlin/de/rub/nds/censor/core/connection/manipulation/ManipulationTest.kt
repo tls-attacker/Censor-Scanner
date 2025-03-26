@@ -2,6 +2,7 @@ package de.rub.nds.censor.core.connection.manipulation
 
 import de.rub.nds.censor.core.connection.TlsConnection
 import de.rub.nds.censor.core.connection.manipulation.tls.TlsManipulation
+import de.rub.nds.censor.core.connection.manipulation.tls.WaitManipulation
 import de.rub.nds.censor.core.connection.manipulation.tls.extension.SniExtensionManipulation
 import de.rub.nds.censor.core.constants.CensorScanType
 import de.rub.nds.censor.core.constants.Ip
@@ -21,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class ManipulationTest<Manipulation : TlsManipulation>(private val fails: Boolean = false) {
+abstract class ManipulationTest<Manipulation : TlsManipulation>(private val fails: Boolean = false, private val longWait: Boolean = false) {
 
     protected val defaultMessageLength: Int
         get() = lengthCalculator.messageLength
@@ -61,6 +62,9 @@ abstract class ManipulationTest<Manipulation : TlsManipulation>(private val fail
         // add specific manipulation
         tlsConnection.manipulations.addAll(extraManipulations())
         tlsConnection.manipulations.add(manipulation)
+        if (longWait) {
+            tlsConnection.manipulations.add(WaitManipulation())
+        }
         // connect to server
         try {
             runBlocking {
